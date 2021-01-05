@@ -1,9 +1,30 @@
 import React from "react";
 
 class ExpenseItem extends React.Component {
+  constuctor(props) {
+    super(props);
+    this.state = {
+      items: props,
+    };
+  }
+
   render() {
-    console.log("This is coming from inside the render of ExpenseItem Class");
-    return <div></div>;
+    return (
+      <div className="container expense-item">
+        <div className="row expense-labels">
+          <div className="col col-sm-3">Date</div>
+          <div className="col col-sm-3">Type</div>
+          <div className="col col-sm-3">Merchant</div>
+          <div className="col col-sm-3">Amount</div>
+        </div>
+        <div className="row expense-row">
+          <div className="col col-sm-3">{item.date}</div>
+          <div className="col col-sm-3">{item.type}</div>
+          <div className="col col-sm-3">{item.merchant}</div>
+          <div className="col col-sm-3">{item.amount}</div>
+        </div>
+      </div>
+    );
   }
 }
 

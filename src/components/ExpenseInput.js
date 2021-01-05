@@ -1,48 +1,41 @@
 import React from "react";
-// import ExpenseButton from "./ExpenseButton";
+import ExpenseButton from "./ExpenseButton";
+import ExpenseItem from "./ExpenseItem";
 
 class ExpenseInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = { expenses: [] };
 
-    // this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // handleChange(event) {
-  //   console.log("handleChange called");
-
-  //   const value = event.target.value;
-  //   this.setState({
-  //     ...this.state,
-  //     [event.target.name]: value,
-  //   });
-  // }
-
   handleSubmit(event) {
-    // console.log("event: ", event);
-    // console.log(this.state);
     let randomId = Math.random();
-    let expense = {
+    let expenseArray = this.state.expenses;
+    expenseArray.push({
       id: randomId,
       date: event.target.date.value,
       type: event.target.type.value,
       merchant: event.target.merchant.value,
       amount: event.target.amount.value,
-    };
-    console.log("expense: ", expense);
-    this.setState({
-      ...this.state,
-      [randomId]: expense,
     });
 
-    console.log(this.state.expenses);
-    alert("Expense for " + expense.merchant + " added");
+    this.setState({
+      ...this.state,
+      expenses: expenseArray,
+    });
+
+    alert("Expense for " + event.target.merchant.value + " added");
     event.preventDefault();
   }
 
   render() {
+    const expenseItems = this.state.expenses.map((item) => (
+      <ExpenseItem key={item.id} item={item} />
+    ));
+
     return (
       <div className="expense-input-container">
         <form onSubmit={this.handleSubmit}>
@@ -95,12 +88,9 @@ class ExpenseInput extends React.Component {
             </div>
           </div>
 
-          <button className="btn btn-success" type="submit" id="data-button">
-            ENTER
-          </button>
-
-          {/* <ExpenseButton /> */}
+          <ExpenseButton />
         </form>
+        <div className="expense-item">{expenseItems}</div>
       </div>
     );
   }
