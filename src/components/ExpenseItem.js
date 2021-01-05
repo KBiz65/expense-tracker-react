@@ -18,10 +18,10 @@ class ExpenseItem extends React.Component {
           <div className="col col-sm-3">Amount</div>
         </div>
         <div className="row expense-row">
-          <div className="col col-sm-3">{item.date}</div>
-          <div className="col col-sm-3">{item.type}</div>
-          <div className="col col-sm-3">{item.merchant}</div>
-          <div className="col col-sm-3">{item.amount}</div>
+          <div className="col col-sm-3">{this.items.props.date}</div>
+          <div className="col col-sm-3">{this.items.props.type}</div>
+          <div className="col col-sm-3">{this.items.props.merchant}</div>
+          <div className="col col-sm-3">{this.items.props.amount}</div>
         </div>
       </div>
     );
