@@ -3,11 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
   text-align: center;
-}
-
-.header-container {
 }
 
 .expense-input-container {
@@ -35,4 +32,61 @@ form {
 button {
   border-radius: 5px;
   width: 100px;
+}
+
+.expense-labels {
+  width: 100%;
+  margin: 2rem 0 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+.expense-labels-item {
+  text-align: center;
+}
+
+.expense-item-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.expense-item {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.expense-row {
+  width: 100%;
+  margin: 0;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+}
+.expense-row-item-id {
+  display: none;
+}
+
+.expense-row-item {
+  margin: 0;
+  text-align: center;
+}
+
+.footer-container {
+  width: 100;
+  margin-top: 5rem;
 }

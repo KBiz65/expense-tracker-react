@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Header />
       <ExpenseInput />
-      {/* <ExpensesList /> */}
+      {/* <ExpenseItem /> */}
       <Footer />
     </div>
   );
