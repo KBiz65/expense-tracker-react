@@ -8,7 +8,7 @@ class ExpenseInput extends React.Component {
     this.state = { expenses: [] };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleButtonClick = this.handleDeleteExpense.bind(this);
+    this.handleDeleteExpense = this.handleDeleteExpense.bind(this);
   }
 
   handleSubmit(event) {
@@ -39,11 +39,21 @@ class ExpenseInput extends React.Component {
 
   handleDeleteExpense(event) {
     let expenseArray = this.state.expenses;
-    console.log(
-      "event from handleButtonClick: ",
-      event.target.parentElement.firstChild.id
-    );
-    console.log(expenseArray);
+    let expenseToDelete = event.target.parentElement.firstChild;
+
+    const deleteExpenseFromArray = expenseArray.map((item) => {
+      if (item.id === Number(expenseToDelete.id)) {
+        return expenseArray.indexOf(item);
+      }
+      return item;
+    });
+
+    expenseArray = expenseArray.splice(deleteExpenseFromArray, 1);
+
+    this.setState({
+      ...this.state,
+      expenses: deleteExpenseFromArray,
+    });
   }
 
   render() {
