@@ -41,6 +41,7 @@ class ExpenseInput extends React.Component {
     let expenseArray = this.state.expenses;
     let expenseToDelete = event.target.parentElement.firstChild;
 
+    console.log(expenseArray);
     const deleteExpenseFromArray = expenseArray.map((item) => {
       if (item.id === Number(expenseToDelete.id)) {
         return expenseArray.indexOf(item);
@@ -48,7 +49,9 @@ class ExpenseInput extends React.Component {
       return item;
     });
 
+    console.log("Before splice: ", expenseArray);
     expenseArray = expenseArray.splice(deleteExpenseFromArray, 1);
+    console.log("After splice: ", expenseArray);
 
     this.setState({
       ...this.state,
