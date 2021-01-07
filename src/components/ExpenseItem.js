@@ -6,14 +6,7 @@ class ExpenseItem extends React.Component {
     this.state = {
       items: props,
     };
-    this.handleButtonClick = this.handleButtonClick.bind(this);
-    console.log(props);
-  }
-
-  handleButtonClick(event) {
-    let expenseArray = this.state.items.expenseArray;
-    console.log("expenseArray: ", expenseArray);
-    console.log("item: ", this.state.items.item);
+    console.log("props from ExpenseItem constructor: ", props);
   }
 
   render() {
@@ -44,7 +37,7 @@ class ExpenseItem extends React.Component {
           </div>
           <button
             className="col col-sm-1 btn btn-sm btn-outline-danger expense-row-item"
-            onClick={this.handleButtonClick}
+            onClick={this.state.items.handleDeleteExpense}
           >
             X
           </button>

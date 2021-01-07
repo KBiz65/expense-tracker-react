@@ -8,6 +8,7 @@ class ExpenseInput extends React.Component {
     this.state = { expenses: [] };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleButtonClick = this.handleDeleteExpense.bind(this);
   }
 
   handleSubmit(event) {
@@ -32,8 +33,17 @@ class ExpenseInput extends React.Component {
       expenses: expenseArray,
     });
 
-    alert("Expense for " + event.target.merchant.value + " added");
+    // alert("Expense for " + event.target.merchant.value + " added");
     event.preventDefault();
+  }
+
+  handleDeleteExpense(event) {
+    let expenseArray = this.state.expenses;
+    console.log(
+      "event from handleButtonClick: ",
+      event.target.parentElement.firstChild.id
+    );
+    console.log(expenseArray);
   }
 
   render() {
@@ -42,6 +52,7 @@ class ExpenseInput extends React.Component {
         key={item.id}
         item={item}
         expenseArray={this.state.expenses}
+        handleDeleteExpense={this.handleDeleteExpense}
       />
     ));
 
