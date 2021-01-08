@@ -7,6 +7,10 @@
   text-align: center;
 }
 
+.header-container {
+  margin-top: 2rem;
+}
+
 .expense-input-container {
   padding: 1rem 0;
   width: 100%;
