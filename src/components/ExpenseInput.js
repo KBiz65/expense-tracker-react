@@ -44,6 +44,7 @@ class ExpenseInput extends React.Component {
     event.preventDefault();
     let randomId = Math.random();
     let expenseArray = this.state.expenses;
+
     expenseArray.push({
       id: randomId,
       date: event.target.date.value,
@@ -110,6 +111,7 @@ class ExpenseInput extends React.Component {
                   name="date"
                   value={this.state.date}
                   onChange={this.handleChange}
+                  required
                 ></input>
               </div>
 
@@ -121,6 +123,7 @@ class ExpenseInput extends React.Component {
                   name="type"
                   value={this.state.type}
                   onChange={this.handleChange}
+                  required
                 >
                   <option value="Cash">Cash</option>
                   <option value="Credit">Credit</option>
@@ -139,6 +142,7 @@ class ExpenseInput extends React.Component {
                   name="merchant"
                   value={this.state.merchant}
                   onChange={this.handleChange}
+                  required
                 ></input>
               </div>
 
@@ -151,6 +155,7 @@ class ExpenseInput extends React.Component {
                   name="amount"
                   value={this.state.amount}
                   onChange={this.handleChange}
+                  required
                 ></input>
               </div>
             </div>
