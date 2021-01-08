@@ -6,7 +6,6 @@ class ExpenseItem extends React.Component {
     this.state = {
       items: props,
     };
-    // console.log("props from ExpenseItem constructor: ", props);
   }
 
   render() {

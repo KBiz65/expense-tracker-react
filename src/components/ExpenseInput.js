@@ -29,9 +29,6 @@ class ExpenseInput extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.expenses !== this.state.expenses) {
-      console.log("ComponentDidUpdate was called");
-      console.log("prevState.expenses: ", prevState.expenses);
-      console.log("this.state.expenses: ", this.state.expenses);
       localStorage.clear();
       localStorage.setItem("expenseItems", JSON.stringify(this.state.expenses));
     }
@@ -83,7 +80,6 @@ class ExpenseInput extends React.Component {
       (item) => item.id !== Number(expenseToDelete.id)
     );
 
-    console.log("deleteExpFromArr: ", deleteExpenseFromArray);
     this.setState({
       ...this.state,
       expenses: deleteExpenseFromArray,
