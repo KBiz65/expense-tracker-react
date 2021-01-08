@@ -5,13 +5,46 @@ import ExpenseItem from "./ExpenseItem";
 class ExpenseInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { expenses: [] };
+    this.state = {
+      expenses: [],
+      date: "",
+      type: "",
+      merchant: "",
+      amount: "",
+    };
 
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDeleteExpense = this.handleDeleteExpense.bind(this);
   }
 
+  componentDidMount() {
+    const storage = JSON.parse(localStorage.getItem("expenseItems"));
+
+    storage &&
+      this.setState({
+        expenses: storage,
+      });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.expenses !== this.state.expenses) {
+      console.log("ComponentDidUpdate was called");
+      console.log("prevState.expenses: ", prevState.expenses);
+      console.log("this.state.expenses: ", this.state.expenses);
+      localStorage.clear();
+      localStorage.setItem("expenseItems", JSON.stringify(this.state.expenses));
+    }
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
   handleSubmit(event) {
+    event.preventDefault();
     let randomId = Math.random();
     let expenseArray = this.state.expenses;
     expenseArray.push({
@@ -31,28 +64,26 @@ class ExpenseInput extends React.Component {
     this.setState({
       ...this.state,
       expenses: expenseArray,
+      date: "",
+      type: "",
+      merchant: "",
+      amount: "",
     });
 
-    // alert("Expense for " + event.target.merchant.value + " added");
-    event.preventDefault();
+    localStorage.setItem("expenseItems", JSON.stringify(this.state.expenses));
+
+    alert("Expense for " + event.target.merchant.value + " added");
   }
 
   handleDeleteExpense(event) {
     let expenseArray = this.state.expenses;
     let expenseToDelete = event.target.parentElement.firstChild;
 
-    console.log(expenseArray);
-    const deleteExpenseFromArray = expenseArray.map((item) => {
-      if (item.id === Number(expenseToDelete.id)) {
-        return expenseArray.indexOf(item);
-      }
-      return item;
-    });
+    const deleteExpenseFromArray = expenseArray.filter(
+      (item) => item.id !== Number(expenseToDelete.id)
+    );
 
-    console.log("Before splice: ", expenseArray);
-    expenseArray = expenseArray.splice(deleteExpenseFromArray, 1);
-    console.log("After splice: ", expenseArray);
-
+    console.log("deleteExpFromArr: ", deleteExpenseFromArray);
     this.setState({
       ...this.state,
       expenses: deleteExpenseFromArray,
@@ -82,6 +113,7 @@ class ExpenseInput extends React.Component {
                   id="date"
                   name="date"
                   value={this.state.date}
+                  onChange={this.handleChange}
                 ></input>
               </div>
 
@@ -92,6 +124,7 @@ class ExpenseInput extends React.Component {
                   id="type"
                   name="type"
                   value={this.state.type}
+                  onChange={this.handleChange}
                 >
                   <option value="Cash">Cash</option>
                   <option value="Credit">Credit</option>
@@ -108,7 +141,8 @@ class ExpenseInput extends React.Component {
                   type="text"
                   id="merchant"
                   name="merchant"
-                  value={this.state.expenses.merchant}
+                  value={this.state.merchant}
+                  onChange={this.handleChange}
                 ></input>
               </div>
 
@@ -120,6 +154,7 @@ class ExpenseInput extends React.Component {
                   id="amount"
                   name="amount"
                   value={this.state.amount}
+                  onChange={this.handleChange}
                 ></input>
               </div>
             </div>
